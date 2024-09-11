@@ -1,6 +1,6 @@
 
 import Image from 'next/image';
-import OkPic from '../../public/images/okpic.png'
+import OkPic from '../../../public/images/okpic.png'
 
 export default function Home() {
   return (
