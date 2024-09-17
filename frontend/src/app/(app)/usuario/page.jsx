@@ -97,6 +97,9 @@ const Usuario = () => {
                     </span>
                 </span>
 
+                <p className="p-4 text-center font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis voluptas reprehenderit non, vitae odit iusto id nostrum animi optio sed labore ea ullam ipsam eius, iure minima aliquam perspiciatis molestias.</p>
+
+
                 <section className="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2 max-w-5xl w-full">
 
                     <div className="flex flex-col rounded-lg p-2 gap-2">
@@ -140,7 +143,10 @@ const Usuario = () => {
                                 </span>
                             </div>
                         </div>
+
                     </div>
+
+
 
                     <div className="flex flex-col rounded-lg p-2 gap-2">
                         <h2 className="font-bold text-2xl">Experiência</h2>
