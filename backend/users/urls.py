@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import RegisterView
+
+from users.views import UserProfileSerializer
 
 urlpatterns = [
-    path('register/', RegisterView.as_view(), name='register'),
+    path('users/<str:username>/', UserProfileSerializer.as_view(), name='retrieve-user'),
 ]

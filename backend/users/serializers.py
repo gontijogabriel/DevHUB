@@ -1,20 +1,30 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
 
-User = get_user_model()
+from users.models import User, Experience, Stack
 
-class RegisterSerializer(serializers.ModelSerializer):
+from projects.serializers import ProjectSerializer
+
+
+class StackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stack
+        fields = ['name']
+
+
+class ExperienceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Experience
+        fields = ['start_at', 'end_at', 'company', 'stack', 'description']
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    experience = ExperienceSerializer(many=True, read_only=True)
+    projects = ProjectSerializer(many=True, read_only=True)
+    stack = StackSerializer(read_only=True)
+
     class Meta:
         model = User
-        # fields = ['email', 'password', 'first_name', 'last_name']
         fields = '__all__'
-        # extra_kwargs = {'password': {'write_only': True}}
-
-    def create(self, validated_data):
-        user = User.objects.create_user(
-            email=validated_data['email'],
-            password=validated_data['password'],
-            first_name=validated_data.get('first_name', ''),
-            last_name=validated_data.get('last_name', '')
-        )
-        return user
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }

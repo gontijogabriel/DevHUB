@@ -1,0 +1,146 @@
+[
+    {
+        "model": "users.stack",
+        "pk": 1,
+        "fields": {
+            "name": "Frontend",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "users.stack",
+        "pk": 2,
+        "fields": {
+            "name": "Backend",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "users.stack",
+        "pk": 3,
+        "fields": {
+            "name": "Fullstack",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "users.stack",
+        "pk": 4,
+        "fields": {
+            "name": "DevOps",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "users.stack",
+        "pk": 5,
+        "fields": {
+            "name": "Mobile",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 1,
+        "fields": {
+            "name": "Python",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 2,
+        "fields": {
+            "name": "JavaScript",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 3,
+        "fields": {
+            "name": "Java",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 4,
+        "fields": {
+            "name": "C#",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 5,
+        "fields": {
+            "name": "Go",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 6,
+        "fields": {
+            "name": "Ruby",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 7,
+        "fields": {
+            "name": "PHP",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 8,
+        "fields": {
+            "name": "Swift",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 9,
+        "fields": {
+            "name": "Kotlin",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 10,
+        "fields": {
+            "name": "Rust",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "projects.skills",
+        "pk": 11,
+        "fields": {
+            "name": "TypeScript",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    }
+]
