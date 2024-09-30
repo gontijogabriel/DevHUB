@@ -1,7 +1,8 @@
+
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { ThemeDarkMode } from "@/providers/ThemeProvider";
+import { AuthProvider } from "@/context/AuthContext";
+
 
 export const metadata = {
   title: "<DevHUB/>",
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="font-jetBrainsMono bg-gray-50 text-gray-900 dark:text-gray-50 dark:bg-gray-900">
         <ThemeDarkMode>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </ThemeDarkMode>
       </body>
     </html>

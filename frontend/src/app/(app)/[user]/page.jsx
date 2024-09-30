@@ -1,10 +1,36 @@
 "use client"
 
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import { GiStarsStack } from "react-icons/gi";
 import { IoLogoGithub } from "react-icons/io";
 import { LuUserPlus2 } from "react-icons/lu";
+import Experience from '@/components/Profile/Experience';
+import Project from '@/components/Profile/Project';
+import Skill from '@/components/Profile/Skill';
 
-const Usuario = () => {
+const User = () => {
+    const params = useParams();
+    const user = params.user;
+    const [userData, setUserData] = useState();
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/users/${user}/`);
+                console.log(response.data)
+                setUserData(response.data);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+        fetchUserData();
+    }, [user]);
+
+    if (!userData) return <p>Loading...</p>;
+
 
     return (
         <>
@@ -22,10 +48,10 @@ const Usuario = () => {
                 </span>
 
                 <h1 className="mt-4 text-2xl font-bold">
-                    Gabriel Gontijo
+                    {userData.first_name} {userData.last_name}
                 </h1>
 
-                <p>Full Stack</p>
+                <p>{userData.stack.name}</p>
 
                 <ul className="flex gap-4 py-4 pb-2">
                     <li>
@@ -80,21 +106,9 @@ const Usuario = () => {
                 </ul>
 
                 <span className="flex flex-wrap gap-1 mt-2 justify-center">
-                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                        Python
-                    </span>
-
-                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                        Django
-                    </span>
-
-                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                        Django REST Framework
-                    </span>
-
-                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                        React
-                    </span>
+                    {userData.skills.forEach((skill, index) => (
+                        <Skill key={index} props={skill.name} />
+                    ))}
                 </span>
 
                 <p className="p-4 text-center font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis voluptas reprehenderit non, vitae odit iusto id nostrum animi optio sed labore ea ullam ipsam eius, iure minima aliquam perspiciatis molestias.</p>
@@ -105,48 +119,13 @@ const Usuario = () => {
                     <div className="flex flex-col rounded-lg p-2 gap-2">
                         <h2 className="font-bold text-2xl">Projetos</h2>
 
-                        <div className="flex items-start gap-4 p-2 dark:bg-gray-50 bg-gray-200 rounded-lg">
-                            <div className="rounded-lg p-2 bg-blue-600 text-white">
-                                <IoLogoGithub size={40} />
-                            </div>
-                            <div>
-                                <h3 className="text-lg font-medium text-gray-900">CRUD</h3>
-                                <p className="text-gray-700 font-extrabold">Defensoria Pública</p>
-                                <span className="flex flex-wrap gap-1 mt-1">
-                                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                                        Django
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start gap-4 p-2 dark:bg-gray-50 bg-gray-200 rounded-lg">
-                            <div className="rounded-lg p-2 bg-blue-600 text-white">
-                                <IoLogoGithub size={40} />
-                            </div>
-                            <div>
-                                <h3 className="text-lg font-medium text-gray-900">API DRF</h3>
-                                <p className="text-gray-700 font-extrabold">Projeto de API com Django REST Framework</p>
-                                <span className="flex flex-wrap gap-1 mt-1">
-                                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                                        React
-                                    </span>
-                                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                                        Django REST Framework
-                                    </span>
-                                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                                        Docker
-                                    </span>
-                                    <span className="whitespace-nowrap rounded-full text-gray-700 px-2.5 font-bold py-0.5 text-xs bg-gray-400">
-                                        Docker Compose
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-
+                        {userData.projects.forEach((project, index) => (
+                            <Project
+                                key={index}
+                                project={project}
+                            />
+                        ))}
                     </div>
-
-
 
                     <div className="flex flex-col rounded-lg p-2 gap-2">
                         <h2 className="font-bold text-2xl">Experiência</h2>
@@ -179,4 +158,6 @@ const Usuario = () => {
     )
 }
 
-export default Usuario;
+export default User;
+
+

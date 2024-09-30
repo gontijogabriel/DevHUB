@@ -1,10 +1,14 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { TbMenuDeep } from 'react-icons/tb';
 import DarkModeToggle from '../DarkModeToggle';
+import { useAuth } from '@/context/AuthContext';
+import LogginButton from '../LoginButton';
+import Link from 'next/link';
 
 const Header = () => {
+    const { session, logout, loading, login } = useAuth();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
@@ -14,6 +18,10 @@ const Header = () => {
     const closeMobileMenu = () => {
         setIsMobileMenuOpen(false);
     };
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
 
     return (
         <header className="w-full border-b border-black dark:border-slate-700">
@@ -34,23 +42,36 @@ const Header = () => {
                         <a href="/projetos">
                             <li>Projetos</li>
                         </a>
-                        <a href="/usuarios">
+                        <Link href='/usuarios'>
                             <li>Usuários</li>
-                        </a>
+                        </Link>
+                        
                     </ul>
                 </nav>
 
                 <div className="flex items-center">
+
                     <DarkModeToggle />
-                    
-                    <a href="/usuario" className="flex items-center mx-4 justify-center w-12 h-12 bg-gray-200 rounded-full text-black font-bold font-sans">
-                        <span>GG</span>
-                    </a>
+                    {session ? (
+                        <>
+                            <Link 
+                                href={`/${session.username}`}
+                                className="flex items-center mx-4 justify-center w-12 h-12 bg-gray-200 rounded-full text-black font-bold font-sans"
+                            >
+                                <img src={session.avatar} alt="User Avatar" className="w-full h-full rounded-full" />
+                            </Link>
+                        </>
+                    ) : (
+                        <div className='flex'>
+                            <p>-</p>
+                            <LogginButton action={login} text='Login' style='ml-2' />
+                            <p>-</p>
+                        </div>
+                    )}
 
                     <span onClick={toggleMobileMenu} className="cursor-pointer lg:hidden">
                         <TbMenuDeep size={30} />
                     </span>
-
                 </div>
             </div>
 
@@ -64,10 +85,16 @@ const Header = () => {
                     onClick={e => e.stopPropagation()}
                 >
                     <ul className="flex flex-col items-start gap-4 p-6">
-                        <li onClick={closeMobileMenu} className="cursor-pointer">home</li>
-                        <li onClick={closeMobileMenu} className="cursor-pointer">sobre</li>
-                        <li onClick={closeMobileMenu} className="cursor-pointer">participe</li>
-                        <li onClick={closeMobileMenu} className="cursor-pointer">usuários</li>
+                        <li onClick={closeMobileMenu} className="cursor-pointer">Home</li>
+                        <li onClick={closeMobileMenu} className="cursor-pointer">Sobre</li>
+                        <li onClick={closeMobileMenu} className="cursor-pointer">Participe</li>
+                        <li onClick={closeMobileMenu} className="cursor-pointer">Usuários</li>
+                        <button
+                            onClick={logout}
+                            className="mx-2 px-4 py-2 bg-red-500 text-white rounded"
+                        >
+                            Logout
+                        </button>
                     </ul>
                 </nav>
             </div>

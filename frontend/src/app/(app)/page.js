@@ -1,8 +1,13 @@
+'use client'
 
 import Image from 'next/image';
 import OkPic from '../../../public/images/okpic.png'
+import LogginButton from '@/components/LoginButton';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Home() {
+  const { login } = useAuth();
+
   return (
     <>
       <main className="w-full container mx-auto">
@@ -10,21 +15,17 @@ export default function Home() {
         <section class="overflow-hidden sm:grid sm:grid-cols-2 sm:items-center">
           <div class="p-8 md:p-12 lg:px-16 lg:py-24">
             <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-              <h2 class="text-3xl font-bold sm:text-4xl">
+
+              <h1 className="text-3xl font-bold sm:text-4xl">
                 Conecte-se com desenvolvedores igual a você!
-              </h2>
+              </h1>
 
               <p class="hidden md:mt-4 md:block">
                 Mais do que uma plataforma de networking, o DevHUB é um lugar para se conectar, colaborar e crescer. Junte-se a outros desenvolvedores que, assim como você, querem fazer a diferença e construir algo para impulsionar seu aprendizado.
               </p>
 
               <div class="mt-8 flex justify-center">
-                <a
-                  href="http://localhost:8000/auth/login/github/"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="transition w-max hover:text-gray-700/75 dark:hover:text-gray-500 flex items-center justify-around text-gray-900 bg-gray-300 p-2 rounded-lg"
-                >
+                <div className='flex w-max gap-2 items-center cursor-pointer transition hover:text-gray-700/75 dark:hover:text-gray-500 text-gray-900 bg-gray-300 p-2 rounded-lg'>
                   <span className="sr-only">GitHub</span>
                   <svg className="size-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -33,8 +34,8 @@ export default function Home() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className='ml-2'>Registre com GitHub!</span>
-                </a>
+                  <LogginButton action={login} text='Registre com GitHub!'/>
+                </div>
               </div>
             </div>
           </div>
